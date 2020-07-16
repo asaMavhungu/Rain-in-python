@@ -17,6 +17,8 @@ pygame.display.set_caption("Real True Work of art")
 carryOn = True
 clock = pygame.time.Clock()
 
+if 1 ==1:
+	pass
 # Main loop
 while carryOn:
 	for event in pygame.event.get():
