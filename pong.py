@@ -24,6 +24,8 @@ while carryOn:
 			carryOn = False
 
 	# Game logic
+	if 1==2:
+		pass
 	# make screen black
 
 	screen.fill(black)
