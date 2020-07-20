@@ -17,9 +17,12 @@ class Drop(object):
 
 	def fall(self):
 		self.y += self.yspeed
+		self.yspeed += 0.000098
 
 		if self.y > 360:
 			self.y = random.randrange(-200, -100)
+			self.speed = random.randrange(100, 250)
+			self.yspeed = self.speed/350
 
 	def show(self):
 		self.y = self.y
@@ -36,7 +39,7 @@ def main():
 
 
 
-	drops = [Drop(i) for i in range(0, 100)]
+	drops = [Drop(i) for i in range(0, 150)]
 
 	running = True
 	while running:
