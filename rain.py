@@ -1,4 +1,5 @@
 import pygame
+import random
 
 resolution = (640, 360)
 
@@ -8,13 +9,17 @@ BLUE = (102, 153, 255)
 BLUE_DARK = (0, 0, 153)
 
 class Drop(object):
-	def __init__(self, x, y):
-		self.x = x
-		self.y = y
-		self.yspeed = 0.05
+	def __init__(self, num):
+		self.x = random.randrange(0, 640)
+		self.y = random.randrange(-200, -100)
+		self.speed = random.randrange(100, 250)
+		self.yspeed = self.speed/350
 
 	def fall(self):
 		self.y += self.yspeed
+
+		if self.y > 360:
+			self.y = random.randrange(-200, -100)
 
 	def show(self):
 		self.y = self.y
@@ -29,9 +34,9 @@ class Drop(object):
 
 def main():
 
-	d = Drop(640/2 , 360/2)
 
-	drops = [Drop(i, 10) for i in range(0, 640, 10)]
+
+	drops = [Drop(i) for i in range(0, 100)]
 
 	running = True
 	while running:
