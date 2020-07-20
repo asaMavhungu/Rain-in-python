@@ -6,6 +6,8 @@ pygame.mixer.init()
 black = (0, 0, 0)
 white = (255, 255, 255)
 
+
+#added new line
 # Rain coordinates
 x = 0
 y = 5
