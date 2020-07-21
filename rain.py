@@ -1,48 +1,51 @@
 import pygame
 import random
 
-resolution = (640, 360)
+FPS = 75
+
+WIDTH = 640
+HEIGHT = 360
+resolution = (WIDTH, HEIGHT)
 
 WINDOW = pygame.display.set_mode(resolution)
+pygame.display.set_caption("Rain in Pygame by Asakundwi Mavhungu")
 
-BLUE = (102, 153, 255)
-BLUE_DARK = (0, 0, 153)
+BLUE = (102, 204, 255)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
 
 class Drop(object):
-	def __init__(self, num):
-		self.x = random.randrange(0, 640)
-		self.y = random.randrange(-200, -100)
-		self.speed = random.randrange(100, 250)
-		self.yspeed = self.speed/350
+	def __init__(self):
+		self.x = random.randint(0, WIDTH)
+		self.y = random.randint(-200, -100)
+		self.yspeed = random.randint(15, 25)
+		self.width = 1
+		self.height = 18
 
 	def fall(self):
 		self.y += self.yspeed
-		self.yspeed += 0.000098
+		self.yspeed += 0.15
 
-		if self.y > 360:
-			self.y = random.randrange(-200, -100)
-			self.speed = random.randrange(100, 250)
-			self.yspeed = self.speed/350
+		if self.y > HEIGHT:
+			self.y = random.randint(-200, -100)
+			self.x = random.randint(0, WIDTH)
+			self.yspeed = random.randint(5, 12)
 
 	def show(self):
-		self.y = self.y
-		pygame.draw.rect(WINDOW, BLUE_DARK, [self.x, self.y, 2, 9])
 
-
-
-
-
-
-
+		pygame.draw.rect(WINDOW, WHITE, [self.x, self.y, self.width, self.height])
 
 def main():
 
-
-
-	drops = [Drop(i) for i in range(0, 150)]
+	# Create 225 drops
+	drops = [Drop() for i in range(0, 225)]
+	clock = pygame.time.Clock()
 
 	running = True
 	while running:
+
+		clock.tick(FPS)
 
 		# Did the user click the window close button?
 		for event in pygame.event.get():
@@ -50,8 +53,9 @@ def main():
 				running = False
 
 		# Fill the background with white
-		WINDOW.fill(BLUE)
+		WINDOW.fill(BLACK)
 
+		# Let the drops fall and update the window
 		for x in drops:
 			x.fall()
 			x.show()
@@ -59,4 +63,5 @@ def main():
 	    # Flip the display
 		pygame.display.flip()
 
-main()
+if __name__ == '__main__':
+	main()
