@@ -60,7 +60,7 @@ def main():
 			x.fall()
 			x.show()
 
-	    # Flip the display
+		# Flip the display
 		pygame.display.flip()
 
 if __name__ == '__main__':
