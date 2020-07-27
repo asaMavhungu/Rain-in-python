@@ -39,7 +39,7 @@ class Drop(object):
 def main():
 
 	# Create 225 drops
-	drops = [Drop() for i in range(0, 225)]
+	drops = [Drop() for _ in range(0, 225)]
 	clock = pygame.time.Clock()
 
 	running = True
