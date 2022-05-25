@@ -1,3 +1,9 @@
+# Author: Asakundwi Mavhungu
+# Date: 25 May 2022
+
+# Dependencies: Pygame
+# install with the cli command "pip install pygame" 
+
 import pygame
 import random
 
@@ -16,6 +22,10 @@ WHITE = (255, 255, 255)
 
 
 class Drop(object):
+	"""
+	A drop object
+	A rectangle of certain color and dimensions
+	"""
 	def __init__(self):
 		self.x = random.randint(0, WIDTH)
 		self.y = random.randint(-200, -100)
@@ -24,6 +34,9 @@ class Drop(object):
 		self.height = 18
 
 	def fall(self):
+		"""
+		Increase the y-value of a drop object
+		"""
 		self.y += self.yspeed
 		self.yspeed += 0.15
 
@@ -33,7 +46,9 @@ class Drop(object):
 			self.yspeed = random.randint(5, 12)
 
 	def show(self):
-
+		"""
+		Draw a drop object to the display
+		"""
 		pygame.draw.rect(WINDOW, WHITE, [self.x, self.y, self.width, self.height])
 
 def main():
@@ -47,12 +62,12 @@ def main():
 
 		clock.tick(FPS)
 
-		# Did the user click the window close button?
+		# close window event
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				running = False
 
-		# Fill the background with white
+		# Fill the background with black
 		WINDOW.fill(BLACK)
 
 		# Let the drops fall and update the window
@@ -60,7 +75,7 @@ def main():
 			x.fall()
 			x.show()
 
-		# Flip the display
+		# refresh the display
 		pygame.display.flip()
 
 if __name__ == '__main__':
